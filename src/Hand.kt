@@ -1,4 +1,4 @@
-class JavaHandKotlin(val cards: Array<Card>) {
+class Hand(val cards: Array<Card>) {
     val pokerHandName: String
 
     init {
