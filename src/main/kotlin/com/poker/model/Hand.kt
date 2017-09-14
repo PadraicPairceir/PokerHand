@@ -118,16 +118,16 @@ class Hand(val cards: Array<Card>) {
 
     companion object {
 
-        private val HIGH_CARD_HAND = "High com.poker.model.Card"
-        private val ONE_PAIR_HAND = "One Pair"
-        private val TWO_PAIR_HAND = "Two Pair"
+        private val HIGH_CARD_HAND = "High card"
+        private val ONE_PAIR_HAND = "One pair"
+        private val TWO_PAIR_HAND = "Two pair"
         private val THREE_KIND_HAND = "Three of a kind"
         private val STRAIGHT_HAND = "Straight"
         private val FLUSH_HAND = "Flush"
         private val FULL_HOUSE_HAND = "Full house"
         private val FOUR_KIND_HAND = "Four of a kind"
         private val STRAIGHT_FLUSH_HAND = "Straight flush"
-        private val ROYAL_FLUSH_HAND = "Royal Flush"
+        private val ROYAL_FLUSH_HAND = "Royal flush"
         private val TWO_CARD_NAME_INDEX = 0
         private val KING_CARD_NAME_INDEX = 11
         private val ACE_CARD_NAME_INDEX = 12

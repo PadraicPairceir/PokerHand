@@ -6,20 +6,23 @@ import java.io.File
 
 fun main(args: Array<String>) {
 
-    println("Determining Poker Hands");
+    println("Determining Poker Hands")
 
-    File("/home/padraic-strator/IdeaProjects/PokerHand/src/main/res/pokerHands.txt").forEachLine { processHand(it) }
+    File("/home/padraic-strator/IdeaProjects/PokerHand/src/main/res/pokerHands.txt").forEachLine { println(processHand(it)) }
 }
 
-fun processHand(line: String) {
-    var cardList: MutableList<Card> = arrayListOf()
+fun processHand(line: String): String {
+    val output: String
+    val cardList: MutableList<Card> = arrayListOf()
 
     for(word in line.split(" "))
         cardList.add(Card(word))
 
-    var cards = cardList.toTypedArray()
+    val cards = cardList.toTypedArray()
     if ( cards.size == 5)
-        println(Hand(cards).toString())
+        output = Hand(cards).toString()
     else
-        println("Error in file line: " + line)
+        output = "Error in file line: " + line
+
+    return output
 }
