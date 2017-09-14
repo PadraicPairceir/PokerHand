@@ -11,7 +11,7 @@ fun main(args: Array<String>) {
     File("/home/padraic-strator/IdeaProjects/PokerHand/src/main/res/pokerHands.txt").forEachLine { processHand(it) }
 }
 
-private fun processHand(line: String) {
+fun processHand(line: String) {
     var cardList: MutableList<Card> = arrayListOf()
 
     for(word in line.split(" "))
