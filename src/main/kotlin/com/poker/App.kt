@@ -1,3 +1,7 @@
+package com.poker
+
+import com.poker.model.Card
+import com.poker.model.Hand
 import java.io.File
 
 fun main(args: Array<String>) {

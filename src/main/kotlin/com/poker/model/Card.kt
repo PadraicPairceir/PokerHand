@@ -1,3 +1,5 @@
+package com.poker.model
+
 import java.util.*
 
 class Card(val nameAndSuit: String) {

@@ -1,3 +1,5 @@
+package com.poker.model
+
 class Hand(val cards: Array<Card>) {
     val pokerHandName: String
 
@@ -116,7 +118,7 @@ class Hand(val cards: Array<Card>) {
 
     companion object {
 
-        private val HIGH_CARD_HAND = "High Card"
+        private val HIGH_CARD_HAND = "High com.poker.model.Card"
         private val ONE_PAIR_HAND = "One Pair"
         private val TWO_PAIR_HAND = "Two Pair"
         private val THREE_KIND_HAND = "Three of a kind"
