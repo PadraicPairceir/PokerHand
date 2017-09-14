@@ -5,21 +5,25 @@ class Hand(val cards: Array<Card>) {
         this.pokerHandName = determinePokerHandName()
     }
 
+    override fun toString(): String {
+        var output = ""
+        for (card in cards) {
+            output += card.toString() + " "
+        }
+        output += "=> " + pokerHandName
+        return output
+    }
+
     private fun determinePokerHandName(): String {
 
         val nameCount = IntArray(13)
-        var pokerHandName = HIGH_CARD_HAND
-
-        for (i in 0..12) {
-            nameCount[i] = 0
-        }
 
         // Evaluate counts of each name
         for (i in 0..4) {
             nameCount[cards[i].nameIndex]++
         }
 
-        pokerHandName = determinePairingCounts(nameCount)
+        var pokerHandName = determinePairingCounts(nameCount)
 
         if (pokerHandName == HIGH_CARD_HAND) {
             pokerHandName = determineFlushStraight(nameCount)
@@ -35,8 +39,8 @@ class Hand(val cards: Array<Card>) {
         var isSameSuit = true
         var isStraight = false
 
-        var lowCardName = 11
-        var highCardName = 0
+        var lowCardName = KING_CARD_NAME_INDEX
+        var highCardName = TWO_CARD_NAME_INDEX
         var isCarryingAce = false
         var isAceHigh = false
 
@@ -47,19 +51,20 @@ class Hand(val cards: Array<Card>) {
         }
 
         // Evaluate high and low cards and presence of Ace
-        for (i in 0..11) {
+        for (i in 0..KING_CARD_NAME_INDEX) {
             if (nameCount[i] > 0 && i < lowCardName)
                 lowCardName = i
             if (nameCount[i] > 0 && i > highCardName)
                 highCardName = i
         }
-        if (nameCount[12] > 0) isCarryingAce = true
+        if (nameCount[ACE_CARD_NAME_INDEX] > 0)
+            isCarryingAce = true
 
         if (highCardName - lowCardName == 3 && isCarryingAce) {
-            if (highCardName == 11) {
+            if (highCardName == KING_CARD_NAME_INDEX) {
                 isStraight = true
                 isAceHigh = true
-            } else if (lowCardName == 0)
+            } else if (lowCardName == TWO_CARD_NAME_INDEX)
                 isStraight = true
         } else if (highCardName - lowCardName == 4)
             isStraight = true
@@ -86,7 +91,7 @@ class Hand(val cards: Array<Card>) {
         var countMinorMatchingCards = 1
 
         // Evaluate existence of pairs
-        for (i in 0..12) {
+        for (i in 0..ACE_CARD_NAME_INDEX) {
             if (nameCount[i] > countMajorMatchingCards) {
                 countMinorMatchingCards = countMajorMatchingCards
                 countMajorMatchingCards = nameCount[i]
@@ -121,5 +126,8 @@ class Hand(val cards: Array<Card>) {
         private val FOUR_KIND_HAND = "Four of a kind"
         private val STRAIGHT_FLUSH_HAND = "Straight flush"
         private val ROYAL_FLUSH_HAND = "Royal Flush"
+        private val TWO_CARD_NAME_INDEX = 0
+        private val KING_CARD_NAME_INDEX = 11
+        private val ACE_CARD_NAME_INDEX = 12
     }
 }
